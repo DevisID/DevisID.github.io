@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID de Emergencia</title>
+<style>
+  body {
+    background: #0A1628;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 24px;
+  }
+  h1 {
+    color: #00E5FF;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .card {
+    background: #132F4C;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .label {
+    color: #80FFFFFF;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .value {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  .alerta {
+    background: #4C1313;
+    border-left: 4px solid #FF4444;
+  }
+</style>
+</head>
+<body>
+
+<h1>⚠ ID DE EMERGENCIA</h1>
+
+<div class="card">
+  <div class="label">Nombre completo</div>
+  <div class="value" id="nombre">-</div>
+
+  <div class="label">Grupo sanguíneo</div>
+  <div class="value" id="sangre">-</div>
+
+  <div class="label">Obra social</div>
+  <div class="value" id="obraSocial">-</div>
+</div>
+
+<div class="card alerta">
+  <div class="label">Alergias</div>
+  <div class="value" id="alergias">-</div>
+
+  <div class="label">Enfermedades / Condiciones</div>
+  <div class="value" id="enfermedades">-</div>
+
+  <div class="label">Medicamentos que toma</div>
+  <div class="value" id="medicamentos">-</div>
+</div>
+
+<div class="card">
+  <div class="label">Contacto de emergencia 1</div>
+  <div class="value" id="contacto1">-</div>
+
+  <div class="label">Contacto de emergencia 2</div>
+  <div class="value" id="contacto2">-</div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const campos = ["nombre","sangre","obraSocial","alergias","enfermedades","medicamentos","contacto1","contacto2"];
+  campos.forEach(campo => {
+    const el = document.getElementById(campo);
+    const valor = params.get(campo);
+    el.textContent = valor && valor.trim() !== "" ? valor : "No registrado";
+  });
+</script>
+
+</body>
+</html>
